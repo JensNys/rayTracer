@@ -1,0 +1,12 @@
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
+
+class SphereTest{
+    @Test
+    fun zero(){
+        val origin:Vec3 = Vec3(0,0,0)
+        val sphere: Sphere = Sphere(Vec3(0,0,-1),0.5)
+        val ray:Ray= Ray(origin,Vec3(0,0,-1))
+        println(sphere.hit(ray,Interval.universe))
+    }
+}
