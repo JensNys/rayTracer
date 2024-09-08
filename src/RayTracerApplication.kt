@@ -21,19 +21,15 @@ fun main() {
 
     val buffer =cam.render(world)
 
-    //making and showing ppm picture
+    //making the ppm picture
     val filename:String = "3spheres1plane"
     BufferToPPM.convert(buffer,filename)
+
+    //opening ppm file
+    TextEditorOpener.openInEditor(filename)
+    //showing the picture
     PPMViewer.display("$filename.ppm")
 
-
-
-    println(System.getProperty("os.name"))
-    if (System.getProperty("os.name").startsWith("Windows")) {
-        val k = Runtime.getRuntime().exec("notepad $filename.ppm")
-    }else{
-        val k = Runtime.getRuntime().exec("gedit $filename.ppm")
-    }
 
 
 
