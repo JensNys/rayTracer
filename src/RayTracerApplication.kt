@@ -50,8 +50,13 @@ fun main() {
     val currentPath = File(".").canonicalPath
     val picturePath = "\'$currentPath\\$filename.ppm\'"
 
-    println(picturePath)
-    val k = Runtime.getRuntime().exec("notepad $filename.ppm")
+    println(System.getProperty("os.name"))
+    if (System.getProperty("os.name").startsWith("Windows")) {
+        val k = Runtime.getRuntime().exec("notepad $filename.ppm")
+    }else{
+        val k = Runtime.getRuntime().exec("gedit $filename.ppm")
+    }
+
     PPMViewer.display("$filename.ppm")
 
 
