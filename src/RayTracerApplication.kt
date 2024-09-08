@@ -12,8 +12,10 @@ fun main() {
 
 
     // World
-    val world: Hittable = Sphere(Vec3(0, 0, -1), 0.5)
-
+    val world: HittableList = HittableList()
+    world.add(Sphere(Vec3(0, 0, -1), 0.5))
+    world.add(Sphere(Vec3(1, 0, -1), 0.25))
+    world.add(Sphere(Vec3(-1, 0, -1), 0.25))
 
     //Camera
     val cam: Camera = Camera()
@@ -55,8 +57,6 @@ fun main() {
 }
 
 /**
- *
- *
  * @returns rgb vector with Vec3 percentage that lerps between white and blue vertically
  */
 fun ray_color(r: Ray, world: Hittable): Vec3 {
