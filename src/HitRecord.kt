@@ -71,4 +71,26 @@ class HitRecord {
         return "HitRecord(hitPoint=$hitPoint, normal=$normal, t=$t, front_face=$frontFace)"
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as HitRecord
+
+        if (hitPoint != other.hitPoint) return false
+        if (normal != other.normal) return false
+        if (t != other.t) return false
+        if (frontFace != other.frontFace) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = hitPoint.hashCode()
+        result = 31 * result + normal.hashCode()
+        result = 31 * result + t.hashCode()
+        result = 31 * result + frontFace.hashCode()
+        return result
+    }
+
 }

@@ -7,6 +7,11 @@ class SphereTest{
         val origin:Vec3 = Vec3(0,0,0)
         val sphere: Sphere = Sphere(Vec3(0,0,-1),0.5)
         val ray:Ray= Ray(origin,Vec3(0,0,-1))
-        println(sphere.hit(ray,Interval.universe))
+
+        var hitRecord1 = (sphere.hit(ray, Interval.universe))
+        var hitRecord2 = (sphere.alternativeHit(ray, Interval.universe))
+        assertEquals(hitRecord1,hitRecord2)
+        assertEquals(0.5,hitRecord1?.t)
+
     }
 }

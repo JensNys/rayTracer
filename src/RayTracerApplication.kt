@@ -16,6 +16,7 @@ fun main() {
     world.add(Sphere(Vec3(0, 0, -1), 0.5))
     world.add(Sphere(Vec3(1, 0, -1), 0.25))
     world.add(Sphere(Vec3(-1, 0, -1), 0.25))
+    world.add(Plane(Vec3(0.0,1.0,0.0),-0.3))
 
     //Camera
     val cam: Camera = Camera()
