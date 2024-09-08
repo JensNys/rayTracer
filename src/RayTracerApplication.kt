@@ -3,12 +3,11 @@ import Cameras.NormalCamera
 import Hittables.HittableList
 import Hittables.Plane
 import Hittables.Sphere
+import PPMstuff.BufferToPPM
+import PPMstuff.PPMViewer
+import java.io.File
 
 fun main() {
-
-
-
-
 
     // World
     val world: HittableList = HittableList()
@@ -20,7 +19,23 @@ fun main() {
     //Cameras.Camera
     val cam: Camera = NormalCamera(16.0 / 9.0,400,20)
 
-    cam.render(world)
+    val buffer =cam.render(world)
+
+    //making and showing ppm picture
+    val filename:String = "3spheres1plane"
+    BufferToPPM.convert(buffer,filename)
+    PPMViewer.display("$filename.ppm")
+
+
+
+    println(System.getProperty("os.name"))
+    if (System.getProperty("os.name").startsWith("Windows")) {
+        val k = Runtime.getRuntime().exec("notepad $filename.ppm")
+    }else{
+        val k = Runtime.getRuntime().exec("gedit $filename.ppm")
+    }
+
+
 
 
 }

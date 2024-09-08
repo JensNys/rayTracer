@@ -1,6 +1,7 @@
 package Cameras
 
 import Hittables.Hittable
+import ImageBuffer
 import MyRandom
 import PPMstuff.PPMViewer
 import Ray
@@ -46,13 +47,9 @@ abstract class Camera(val aspect_ratio :Double, val image_width :Int, val sample
         return Ray(origin, lower_left_corner + (u * horizontal) + (v * vertical) - origin)
     }
 
-    fun render(world: Hittable){
+    fun render(world: Hittable):ImageBuffer {
         // render
-        val filename = "sphere1rpp"
-        val myWriter = FileWriter("$filename.ppm")
-        myWriter.write("P3\n")
-        myWriter.write("$image_width $image_height\n255\n")
-
+        var buffer :ImageBuffer= ImageBuffer(image_width,image_height)
         for (j in image_height - 1 downTo 0) {
             print("lines remaining: $j\n")
             for (i in 0 until image_width) {
@@ -65,23 +62,14 @@ abstract class Camera(val aspect_ratio :Double, val image_width :Int, val sample
 
                     pixel_color = ray_color(r, world).plus(pixel_color)
                 }
-                myWriter.write(pixel_color.writeColor(samplesPerPixel))
+                buffer.addAtIndex(i,j,pixel_color/(samplesPerPixel.toDouble()))
             }
         }
-        myWriter.close()
 
-        // show ppm picture
-        val currentPath = File(".").canonicalPath
-        val picturePath = "\'$currentPath\\$filename.ppm\'"
 
-        println(System.getProperty("os.name"))
-        if (System.getProperty("os.name").startsWith("Windows")) {
-            val k = Runtime.getRuntime().exec("notepad $filename.ppm")
-        }else{
-            val k = Runtime.getRuntime().exec("gedit $filename.ppm")
-        }
 
-        PPMViewer.display("$filename.ppm")
+
+        return buffer
 
     }
     /**
