@@ -1,3 +1,8 @@
+package Hittables
+
+import Interval
+import Ray
+
 class HittableList : Hittable {
     val scene: ArrayList<Hittable> = ArrayList()
 

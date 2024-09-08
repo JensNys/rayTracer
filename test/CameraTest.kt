@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions.*
+import Hittables.Sphere
 import org.junit.jupiter.api.Test
 
 class CameraTest{

@@ -1,3 +1,11 @@
+package Cameras
+
+import Hittables.Hittable
+import MyRandom
+import PPMstuff.PPMViewer
+import Ray
+import Vec3
+import times
 import java.io.File
 import java.io.FileWriter
 
@@ -35,7 +43,7 @@ abstract class Camera(val aspect_ratio :Double, val image_width :Int, val sample
     }
 
     fun getRay(u: Double, v: Double): Ray {
-        return Ray(origin, lower_left_corner+ (u*horizontal)+ (v*vertical) - origin)
+        return Ray(origin, lower_left_corner + (u * horizontal) + (v * vertical) - origin)
     }
 
     fun render(world: Hittable){

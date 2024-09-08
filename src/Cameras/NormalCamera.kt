@@ -1,3 +1,12 @@
+package Cameras
+
+import Hittables.HitRecord
+import Hittables.Hittable
+import Interval
+import Ray
+import Vec3
+import times
+
 /**
  * this camera shows for each object the surface normal at the hitpoint. It's purpose is debugging
  */

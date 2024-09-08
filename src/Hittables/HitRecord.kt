@@ -1,4 +1,7 @@
-import java.awt.Point
+package Hittables
+
+import Ray
+import Vec3
 
 /**
  * a hitrecord records data involving when a ray has hit a surface
@@ -38,12 +41,12 @@ class HitRecord {
      * outwardNormal is the normal that points outside of the object at the point of intersection
      * t is the value where the ray hits the object
      */
-    constructor(ray: Ray,outwardNormal:Vec3,t:Double){
-        val hitPoint:Vec3 = ray.point_at_parameter(t)
+    constructor(ray: Ray, outwardNormal: Vec3, t:Double){
+        val hitPoint: Vec3 = ray.point_at_parameter(t)
 
         //calculating frontFace and normal
         var frontFace:Boolean
-        var normal:Vec3
+        var normal: Vec3
         if ((ray.direction * outwardNormal) > 0.0) {
             // ray is inside the sphere
             normal = -outwardNormal
@@ -68,7 +71,7 @@ class HitRecord {
 
 
     override fun toString(): String {
-        return "HitRecord(hitPoint=$hitPoint, normal=$normal, t=$t, front_face=$frontFace)"
+        return "Hittables.HitRecord(hitPoint=$hitPoint, normal=$normal, t=$t, front_face=$frontFace)"
     }
 
     override fun equals(other: Any?): Boolean {

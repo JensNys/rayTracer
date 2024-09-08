@@ -1,7 +1,13 @@
-class Sphere(val center:Vec3,val radius:Double) : Hittable{
+package Hittables
+
+import Interval
+import Ray
+import Vec3
+
+class Sphere(val center: Vec3, val radius:Double) : Hittable {
 
     override fun hit(r: Ray, tInterval: Interval): HitRecord? {
-        val oc:Vec3 = center-r.origin//vector from origin to the center
+        val oc: Vec3 = center-r.origin//vector from origin to the center
 
         val a:Double = r.direction.squaredLength
         val h:Double = (r.direction * oc)
@@ -22,10 +28,10 @@ class Sphere(val center:Vec3,val radius:Double) : Hittable{
         }
         val hitPoint = r.point_at_parameter(t);
 
-        var outward_normal:Vec3 = (hitPoint-center).unitVector;
+        var outward_normal: Vec3 = (hitPoint-center).unitVector;
 
         val front_face: Boolean
-        val normal:Vec3
+        val normal: Vec3
         if ((r.direction * outward_normal) > 0.0) {
             // ray is inside the sphere
             normal = -outward_normal
@@ -39,7 +45,7 @@ class Sphere(val center:Vec3,val radius:Double) : Hittable{
     }
 
     fun alternativeHit(r: Ray, tInterval: Interval): HitRecord? {
-        val oc:Vec3 = center-r.origin//vector from origin to the center
+        val oc: Vec3 = center-r.origin//vector from origin to the center
 
         val a:Double = r.direction.squaredLength
         val h:Double = (r.direction * oc)
@@ -60,7 +66,7 @@ class Sphere(val center:Vec3,val radius:Double) : Hittable{
         }
         val hitPoint = r.point_at_parameter(t);
 
-        var outward_normal:Vec3 = (hitPoint-center).unitVector;
+        var outward_normal: Vec3 = (hitPoint-center).unitVector;
 
         return HitRecord(r,outward_normal,t)
 

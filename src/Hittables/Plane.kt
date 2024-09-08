@@ -1,3 +1,9 @@
+package Hittables
+
+import Interval
+import Ray
+import Vec3
+
 class Plane : Hittable {
 
     var normal: Vec3
