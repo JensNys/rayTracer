@@ -1,7 +1,7 @@
 import java.io.File
 import java.io.FileWriter
 
-class Camera(val aspect_ratio :Double, val image_width :Int, val samplesPerPixel:Int) {
+abstract class Camera(val aspect_ratio :Double, val image_width :Int, val samplesPerPixel:Int) {
     //location of the camera in the world
     var origin: Vec3
 
@@ -12,6 +12,9 @@ class Camera(val aspect_ratio :Double, val image_width :Int, val samplesPerPixel
     //lower left corner of the viewport
     var lower_left_corner: Vec3
     var image_height:Int
+
+
+
 
     init {
 
@@ -76,16 +79,5 @@ class Camera(val aspect_ratio :Double, val image_width :Int, val samplesPerPixel
     /**
      * @returns rgb vector with Vec3 percentage that lerps between white and blue vertically
      */
-    fun ray_color(r: Ray, world: Hittable): Vec3 {
-        val rec: HitRecord? = world.hit(r, Interval(0.0, Double.POSITIVE_INFINITY));
-
-        if (rec != null) {
-            val percentages: Vec3 = (rec.normal + (Vec3(1, 1, 1))) / 2.0
-            return percentages
-        }
-
-        val unitDirection = r.direction.unitVector
-        val t = 0.5 * (unitDirection.y + 1)
-        return ((1 - t) * Vec3(1, 1, 1)) + (t * Vec3(0.5, 0.7, 1.0)) //(1.0-t)*Vec3(1.0, 1.0, 1.0) + t*Vec3(0.5, 0.7, 1.0)
-    }
+    abstract fun ray_color(r: Ray, world: Hittable): Vec3
 }

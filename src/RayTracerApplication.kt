@@ -15,7 +15,7 @@ fun main() {
     world.add(Plane(Vec3(0.0,1.0,0.0),-0.3))
 
     //Camera
-    val cam: Camera = Camera(16.0 / 9.0,1600,20)
+    val cam: Camera = NormalCamera(16.0 / 9.0,4t 00,20)
 
     cam.render(world)
     //file
