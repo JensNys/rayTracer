@@ -1,8 +1,74 @@
-/*
-    must have a hitPoint, the rest is optional
+import java.awt.Point
+
+/**
+ * a hitrecord records data involving when a ray has hit a surface
+ *
+ * the hitpoint is the location where a ray has hit the surface
+ *
+ * ray is the Ray that hit the point
+ *
+ * normal is the surface normal on the point where the ray hit
+ *
+ * t is the value at which the ray hit the hitpoint
+ *
+ * front_face indicates whether the normal points inwards(false) or outwards(true) of the object
+ *
+ *
  */
-class HitRecord(val hitPoint:Vec3,val normal:Vec3,val t:Double,val front_face:Boolean) {
-    override fun toString(): String {
-        return "HitRecord(hitPoint=$hitPoint, normal=$normal, t=$t, front_face=$front_face)"
+class HitRecord {
+    val hitPoint: Vec3
+    val normal: Vec3
+    val t: Double
+    val frontFace: Boolean
+
+    constructor(hitPoint: Vec3, normal: Vec3, t: Double, frontFace: Boolean) {
+        this.hitPoint = hitPoint
+        this.normal = normal
+        this.t = t
+        this.frontFace = frontFace
     }
+
+
+
+//    val hitPoint:Vec3 by lazy {
+//        ray.point_at_parameter(t)
+//    }
+
+    /**
+     * outwardNormal is the normal that points outside of the object at the point of intersection
+     * t is the value where the ray hits the object
+     */
+    constructor(ray: Ray,outwardNormal:Vec3,t:Double){
+        val hitPoint:Vec3 = ray.point_at_parameter(t)
+
+        //calculating frontFace and normal
+        var frontFace:Boolean
+        var normal:Vec3
+        if ((ray.direction * outwardNormal) > 0.0) {
+            // ray is inside the sphere
+            normal = -outwardNormal
+            frontFace = false
+        } else {
+            // ray is outside the sphere
+            normal = outwardNormal
+            frontFace = true
+        }
+
+        this.hitPoint = hitPoint
+        this.normal = normal
+        this.t = t
+        this.frontFace = frontFace
+
+        
+        
+
+    }
+
+
+
+
+    override fun toString(): String {
+        return "HitRecord(hitPoint=$hitPoint, normal=$normal, t=$t, front_face=$frontFace)"
+    }
+
 }
