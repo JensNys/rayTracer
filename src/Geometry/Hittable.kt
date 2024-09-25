@@ -1,7 +1,6 @@
-package Hittables
+package Geometry
 
 import Interval
-import Ray
 
 interface Hittable {
 

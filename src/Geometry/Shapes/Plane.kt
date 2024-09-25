@@ -1,8 +1,10 @@
-package Hittables
+package Geometry.Shapes
 
+import Geometry.HitRecord
+import Geometry.Hittable
 import Interval
-import Ray
-import Vec3
+import Geometry.Ray
+import Geometry.Vec3
 
 class Plane : Hittable {
 

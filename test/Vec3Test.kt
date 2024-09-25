@@ -1,10 +1,12 @@
+import Geometry.Vec3
+import Geometry.times
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.math.sqrt
 
 class Vec3Test {
-
+    private val epsilon  :Double= 1.0E-7
     private lateinit var v1: Vec3
     private lateinit var v2: Vec3
 
@@ -92,7 +94,11 @@ class Vec3Test {
     }
 
     @Test
-    fun immutable() {
+    fun normals() {
+        for (i in 1..100){
+            var v: Vec3 = Vec3.randomUnit()
+            assert(1.0-v.length<epsilon)
+        }
 
     }
 

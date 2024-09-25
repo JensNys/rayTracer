@@ -1,3 +1,7 @@
+package Geometry
+
+import MyRandom
+
 data class Vec3(val x: Double, val y: Double, val z: Double) {
 
     constructor(x: Int, y: Int, z: Int) : this(x.toDouble(), y.toDouble(), z.toDouble())
@@ -22,7 +26,7 @@ data class Vec3(val x: Double, val y: Double, val z: Double) {
         return Vec3(x * value, y * value, z * value)
     }
 
-    operator fun Double.times(vector: Vec3): Vec3{
+    operator fun Double.times(vector: Vec3): Vec3 {
         return Vec3(this * vector.X(), this * vector.Y(), this * vector.Z())
     }
 
@@ -55,7 +59,7 @@ data class Vec3(val x: Double, val y: Double, val z: Double) {
     operator fun times(v: Vec3): Double {
         return x * v.x + y * v.y + z * v.z
     }
-    operator fun unaryMinus():Vec3 {
+    operator fun unaryMinus(): Vec3 {
         return (-1.0)*this
     }
 
@@ -93,6 +97,43 @@ data class Vec3(val x: Double, val y: Double, val z: Double) {
         val b = z * scale
         return "${(255.99 * clamp(r, 0.0, 0.999)).toInt()} ${(255.99 * clamp(g, 0.0, 0.999)).toInt()} ${(255.99 * clamp(b, 0.0, 0.999)).toInt()}\n"
     }
+
+    companion object{
+        fun random():Vec3{
+            return Vec3(MyRandom.randomDouble(),MyRandom.randomDouble(),MyRandom.randomDouble())
+        }
+
+        fun random(min:Double,max:Double):Vec3{
+            return Vec3(MyRandom.randomDouble(min,max),MyRandom.randomDouble(min,max),MyRandom.randomDouble(min,max))
+        }
+
+        /**
+         * returns random vector of length 1
+         */
+        fun randomUnit():Vec3{
+            while (true){
+                var r:Vec3= random(-1.0,1.0)
+                if (1E-160< r.squaredLength && r.squaredLength<1.0){
+                    return r.unitVector
+                }
+            }
+        }
+
+        /**
+         * returns a vector on the hemisphere around the given normal Vector
+         */
+        fun randomOnHemisphere(normal:Vec3):Vec3{
+            val random=randomUnit()
+            if (normal * random>0.0){
+                return random
+            }
+            else{
+                return -random
+            }
+        }
+    }
+
+
 }
 // Extension function to allow Double * Vec3 scaling
 operator fun Double.times(v: Vec3): Vec3 {

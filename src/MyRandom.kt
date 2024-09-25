@@ -18,6 +18,8 @@ class MyRandom {
             return min + (max - min) * r.nextDouble()
         }
 
+
+
     }
 
 

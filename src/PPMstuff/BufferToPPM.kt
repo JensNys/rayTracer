@@ -1,7 +1,6 @@
 package PPMstuff
 
 import ImageBuffer
-import Vec3
 import java.io.FileWriter
 
 class BufferToPPM {

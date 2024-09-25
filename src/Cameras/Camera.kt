@@ -1,14 +1,11 @@
 package Cameras
 
-import Hittables.Hittable
+import Geometry.Hittable
 import ImageBuffer
 import MyRandom
-import PPMstuff.PPMViewer
-import Ray
-import Vec3
-import times
-import java.io.File
-import java.io.FileWriter
+import Geometry.Ray
+import Geometry.Vec3
+import Geometry.times
 
 abstract class Camera(val aspect_ratio :Double, val image_width :Int, val samplesPerPixel:Int) {
     //location of the camera in the world

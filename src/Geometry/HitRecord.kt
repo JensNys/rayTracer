@@ -1,14 +1,11 @@
-package Hittables
-
-import Ray
-import Vec3
+package Geometry
 
 /**
  * a hitrecord records data involving when a ray has hit a surface
  *
  * the hitpoint is the location where a ray has hit the surface
  *
- * ray is the Ray that hit the point
+ * ray is the Geometry.Ray that hit the point
  *
  * normal is the surface normal on the point where the ray hit
  *

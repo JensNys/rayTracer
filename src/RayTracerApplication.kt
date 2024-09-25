@@ -1,11 +1,11 @@
 import Cameras.Camera
 import Cameras.NormalCamera
-import Hittables.HittableList
-import Hittables.Plane
-import Hittables.Sphere
+import Geometry.HittableList
+import Geometry.Shapes.Plane
+import Geometry.Shapes.Sphere
+import Geometry.Vec3
 import PPMstuff.BufferToPPM
 import PPMstuff.PPMViewer
-import java.io.File
 
 fun main() {
 
