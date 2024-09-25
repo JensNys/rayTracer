@@ -124,7 +124,7 @@ data class Vec3(val x: Double, val y: Double, val z: Double) {
          */
         fun randomOnHemisphere(normal:Vec3):Vec3{
             val random=randomUnit()
-            if (normal * random>0.0){
+            if (normal * random>0.0){//if the random vector is in the same hemisphere as the normal
                 return random
             }
             else{
