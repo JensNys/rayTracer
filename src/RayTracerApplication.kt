@@ -1,5 +1,6 @@
 import Cameras.Camera
 import Cameras.NormalCamera
+import Cameras.SimpleDiffuseCamera
 import Geometry.HittableList
 import Geometry.Shapes.Plane
 import Geometry.Shapes.Sphere
@@ -17,7 +18,7 @@ fun main() {
     world.add(Plane(Vec3(0.0,1.0,0.0),-0.3))
 
     //Cameras.Camera
-    val cam: Camera = NormalCamera(16.0 / 9.0,400,20)
+    val cam: Camera = SimpleDiffuseCamera(16.0 / 9.0,400,20)
 
     val buffer =cam.render(world)
 
